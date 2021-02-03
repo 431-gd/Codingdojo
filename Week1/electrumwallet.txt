@@ -1,0 +1,3 @@
+message = your wallet, Coding Dojo
+Address = 1DBJkJ938hcCZgYH4dzBnGr4k6NXWBcJRP
+Signature = IAXIaMqfF1coLlOnup84fjU927iTf5p8C7Zr8QkylKOVddVkQdY1nNMkw/wkxCrgn7HyhxRXl+nnT7EOmdjMrjM=
