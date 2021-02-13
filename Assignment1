@@ -1,0 +1,40 @@
+import hashlib
+import json
+from time import time
+from collections import OrderedDict
+
+
+class Printed:
+    """A base class"""
+    def __repr__(self):
+        return str(self.__dict__)
+
+class Block(Printed):
+    """When a block is added to the chain..."""
+    def __init__(self, index, previousHash, transactions, proof, time=time()):
+        self.index = index
+        self.previousHash = previousHash
+        self.timestamp = time
+        self.transactions = transactions
+        self.proof = proof
+        class Transaction(Printed):
+    """When a transaction is added to a block"""
+    def __init__(self, sender, receiver, amount):
+        self.sender = sender
+        self.receiver = receiver
+        self.amount = amount
+
+    def to_ordered_dict(self):
+        """Converts into dict"""
+        return OrderedDict([('sender', self.sender), ('receiver', self.receiver), ('amount', self.amount)])
+def hashString(string):
+    return hashlib.sha256(string).hexdigest()
+
+def hashBlock(block):
+    hashingBlock = block.__dict__.copy()
+    hashingBlock['transactions'] = [tx.to_ordered_dict() for tx in hashingBlock['transactions']]
+    return hashString(json.dumps(hashingBlock, sort_keys=True).encode())
+    
+    tx = Transaction('xyz','tou',4)
+    
+    tx
