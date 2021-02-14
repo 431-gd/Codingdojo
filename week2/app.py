@@ -44,11 +44,11 @@ def opentxs():
             'Transactions': dicTx
         }
         return jsonify(res), 200
-        else:
-            res = {
+      else:
+         res = {
                 'Message': 'There is no transaction'
             }
-            return jsonify(res), 500
+         return jsonify(res), 500
 
 @app.route('/sendtx', methods=['POST'])
 def sendtx():
@@ -81,8 +81,8 @@ if not values:
                 }
             }
             return jsonify(res), 200
-            else :
-                res = {
+         else :
+             res = {
                     'Message' : 'The transaction does not pass'
                 }
                 return jsonify(res), 500
