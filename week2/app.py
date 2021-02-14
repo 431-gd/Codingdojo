@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+# from flask_cors import CORS
 from blockchain import Blockchain
 from argparse import ArgumentParser
 import requests
 
 app = Flask(__name__)
-CORS(app)
+# CORS(app)
 
 
 @app.route('/', methods=['GET'])
@@ -19,7 +19,7 @@ def chian():
 
 @app.route('/mine', methods=['POST'])
 def mine():
-    block = test.addBlcok()
+   block = test.addBlcok()
     if block != None:
         dictBlock = block.__dict__.copy()
         dictBlock['transactions'] = [tx.__dict__ for tx in dictBlock['transactions']]
@@ -31,12 +31,11 @@ def mine():
         res = {
             'Error': 'Not able to mine a block',
         }
-        return jsonify(res), 500
-
+        return jsonify(res), 500 
 
 @app.route('/opentxs', methods=['GET'])
 def opentxs():
-    txs = test.unconfirmed
+   txs = test.unconfirmed
     if txs != None:
         dictTxs = [tx.__dict__ for tx in txs]
         res = {
@@ -47,12 +46,11 @@ def opentxs():
         res = {
             'Error': 'There is no a transaction',
         }
-        return jsonify(res), 500
-
+        return jsonify(res), 500 
 
 @app.route('/sendtx', methods=['POST'])
 def sendtx():
-    values = request.get_json()
+  values = request.get_json()
     if not values:
         res = {
             'message': 'There is no input'
@@ -84,7 +82,7 @@ def sendtx():
         res = {
             'Error': 'The transaction did not pass'
         }
-        return jsonify(res), 500
+        return jsonify(res), 500  
 
 
 if __name__ == '__main__':
